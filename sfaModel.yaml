@@ -1,0 +1,105 @@
+seml:
+  executable: mixModelTrainSFA.py
+  name: sfaModelTrain
+  output_dir: logs
+  project_root_dir: .
+
+
+slurm:
+  experiments_per_job: 4
+  max_simultaneous_jobs: 6  # Restrict number of simultaneously running jobs per job array
+  sbatch_options:
+    gres: gpu:1       # num GPUs
+    mem: 200G          # memory
+    cpus-per-task: 64  # num cores
+    time: 1-08:00     # max time, D-HH:MM
+
+fixed:
+  init.nrFolds: 5
+  init.patience: 70
+  init.seed_value: 56
+  model.batchSize: 50
+  model.useEmbed: False # for now removed
+  model.calcOri: True # calc the original model
+  model.calcSFA: True # calc the original model
+  model.doSymbolify: True # symbolify the data (if the data is maybe already symbolified)
+  model.useSaves: False # dont calculate already calcluated model runs
+  model.useShapeSaves: False
+  model.multiVariant: False # not working right now
+  model.skipDebugSaves: False # reduces the saved amount of data
+  model.dropeOutRate: 0.3
+
+  data.dataset: utc
+  data.takename: False #If True, take UTC names rather than numbers
+  model.limit: 500
+  model.numEpochs: 500
+
+grid:
+
+  #number of symbols
+  init.symbolCount: 
+    type: choice
+    options: 
+      - 5
+      - 6
+      - 7
+#      - 9
+
+  model.numOfAttentionLayers: 
+    type: choice
+    options: 
+      - 2
+      - 4
+
+  # possible datasets
+  data.number:
+    type: range
+    min: 0 
+    max: 85
+    step: 1
+
+  model.header: 
+    type: choice
+    options:
+      - 8
+      - 16 
+
+  model.strategy:
+    type: choice
+    options:
+      - uniform
+      - quantile
+
+
+  model.ncoef: 
+    type: choice
+    options: 
+      - [256, 1]
+      - [128, 2]
+      - [64, 4]
+      - [0,0]
+
+bigModel:
+  grid:
+    model.dmodel: 
+      type: choice
+      options:
+        - 16
+
+    model.dff:     
+      type: choice
+      options:
+        - 8
+
+smallModel:
+  grid:
+    model.dmodel: 
+      type: choice
+      options:
+        - 8
+
+    model.dff:     
+      type: choice
+      options:
+        - 4
+
