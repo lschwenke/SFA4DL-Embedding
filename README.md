@@ -16,7 +16,7 @@ Requirements for the installation guide (other version might or might not work a
 
 - python==3.9.16
 - tensorflow-gpu==2.4.1
-- tslearn===0.5.2
+- tslearn==0.5.2
 - pyts==0.12.0
 
 
