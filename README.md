@@ -18,6 +18,7 @@ Requirements for the installation guide (other version might or might not work a
 - tensorflow-gpu==2.4.1
 - tslearn==0.5.2
 - pyts==0.12.0
+- seml==0.3.7
 
 
 To use the jupyter notebook: <br>
