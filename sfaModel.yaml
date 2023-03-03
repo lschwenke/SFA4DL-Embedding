@@ -29,7 +29,7 @@ fixed:
   model.skipDebugSaves: False # reduces the saved amount of data
   model.dropeOutRate: 0.3
 
-  data.dataset: utc
+  data.dataset: ucr
   data.takename: False #If True, take UTC names rather than numbers
   model.limit: 500
   model.numEpochs: 500
